@@ -1,0 +1,3 @@
+{
+  "classes": "def fetch_all_comments() -> List[Comment]:\n    '''Fetches all the comments from the database and returns a list of Comment objects.\n\n    Args:\n        None\n\n    Returns:\n        List[Comment]: A list of Comment objects. A Comment object has attributes `id`, `text`, `user_id` and `post_id`.\n    '''\n\n    return get_session('blogs').query(Comment).all()"
+}

@@ -1,0 +1,14 @@
+codebleu[all]
+flask
+flask-cors
+langchain
+langchain-community
+langchain-core
+langchain-mistralai
+langchain-openai
+numpy
+openai
+pandas
+redbaron
+sqlalchemy
+tqdm

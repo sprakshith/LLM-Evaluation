@@ -1,0 +1,192 @@
+[{
+  "_id": {
+    "$oid": "63e536f88360c85596ab3ca5"
+  },
+  "user_id": "63cc0bb7fe55050a09baee09",
+  "total": 2191,
+  "payment_details_id": "63e536f78360c85596ab3ca4"
+},
+{
+  "_id": {
+    "$oid": "63e10d5d2c3127712ca9c8d2"
+  },
+  "user_id": "63cc0bb7fe55050a09baee0a",
+  "total": 700,
+  "payment_details_id": "63e10d5d2c3127712ca9c8d1"
+},
+{
+  "_id": {
+    "$oid": "63e6048f44b881a2a1a9f82c"
+  },
+  "user_id": "63cc0bb7fe55050a09baee09",
+  "total": 149,
+  "payment_details_id": "63e6048e44b881a2a1a9f82b"
+},
+{
+  "_id": {
+    "$oid": "63e25aaf152372cb08287b5d"
+  },
+  "user_id": "63cc0bb7fe55050a09baee09",
+  "total": 400,
+  "payment_details_id": "63e25aaf152372cb08287b5c"
+},
+{
+  "_id": {
+    "$oid": "63e3af82e0e4d55df45cafd8"
+  },
+  "user_id": "63cc0bb7fe55050a09baee08",
+  "total": 316,
+  "payment_details_id": "63e3af81e0e4d55df45cafd7"
+},
+{
+  "_id": {
+    "$oid": "63e3c5070c50b894a690a2c5"
+  },
+  "user_id": "63e3abf0aea7b5b9d5f30716",
+  "total": 808,
+  "payment_details_id": "63e3c5060c50b894a690a2c4"
+},
+{
+  "_id": {
+    "$oid": "63e607c10cbe6d8bd8b060c1"
+  },
+  "user_id": "63cc0bb7fe55050a09baee0a",
+  "total": 415,
+  "payment_details_id": "63e607c00cbe6d8bd8b060c0"
+},
+{
+  "_id": {
+    "$oid": "63e10b1da7a1797b6a652dd4"
+  },
+  "user_id": "63cc0bb7fe55050a09baee0a",
+  "total": 2720,
+  "payment_details_id": "63e10b1da7a1797b6a652dd3"
+},
+{
+  "_id": {
+    "$oid": "63e5370d8360c85596ab3cb9"
+  },
+  "user_id": "63cc0bb7fe55050a09baee09",
+  "total": 1009,
+  "payment_details_id": "63e5370c8360c85596ab3cb8"
+},
+{
+  "_id": {
+    "$oid": "63e155b9ebb79456edc0d7cf"
+  },
+  "user_id": "63cc0bb7fe55050a09baee09",
+  "total": 1440,
+  "payment_details_id": "63e155b8ebb79456edc0d7ce"
+},
+{
+  "_id": {
+    "$oid": "63e6061b44b881a2a1a9f909"
+  },
+  "user_id": "63cc0bb7fe55050a09baee08",
+  "total": 181,
+  "payment_details_id": "63e6061a44b881a2a1a9f908"
+},
+{
+  "_id": {
+    "$oid": "63e605c644b881a2a1a9f8b0"
+  },
+  "user_id": "63cc0bb7fe55050a09baee08",
+  "total": 1809,
+  "payment_details_id": "63e605c544b881a2a1a9f8af"
+},
+{
+  "_id": {
+    "$oid": "63e16c3646ac6fbff2f5ca4b"
+  },
+  "user_id": "63cc0bb7fe55050a09baee0a",
+  "total": 690,
+  "payment_details_id": "63e16c3646ac6fbff2f5ca4a"
+},
+{
+  "_id": {
+    "$oid": "63e3cd776ab2d9096f3e751d"
+  },
+  "user_id": "63e3abf0aea7b5b9d5f30716",
+  "total": 99,
+  "payment_details_id": "63e3cd766ab2d9096f3e751c"
+},
+{
+  "_id": {
+    "$oid": "63e604d644b881a2a1a9f850"
+  },
+  "user_id": "63cc0bb7fe55050a09baee09",
+  "total": 306,
+  "payment_details_id": "63e604d544b881a2a1a9f84f"
+},
+{
+  "_id": {
+    "$oid": "63e6054544b881a2a1a9f8a2"
+  },
+  "user_id": "63cc0bb7fe55050a09baee09",
+  "total": 1326,
+  "payment_details_id": "63e6054444b881a2a1a9f8a1"
+},
+{
+  "_id": {
+    "$oid": "63e605e744b881a2a1a9f8db"
+  },
+  "user_id": "63cc0bb7fe55050a09baee09",
+  "total": 1326,
+  "payment_details_id": "63e605e644b881a2a1a9f8da"
+},
+{
+  "_id": {
+    "$oid": "63e61d377213c3e6b5ab9b6f"
+  },
+  "user_id": "63cc0bb7fe55050a09baee0a",
+  "total": 1245,
+  "payment_details_id": "63e61d367213c3e6b5ab9b6e"
+},
+{
+  "_id": {
+    "$oid": "63e10b6fa7a1797b6a652de8"
+  },
+  "user_id": "63cc0bb7fe55050a09baee0a",
+  "total": 567,
+  "payment_details_id": "63e10b6fa7a1797b6a652de7"
+},
+{
+  "_id": {
+    "$oid": "63e538eea19db0ec65b15d7e"
+  },
+  "user_id": "63cc0bb7fe55050a09baee09",
+  "total": 454,
+  "payment_details_id": "63e538eea19db0ec65b15d7d"
+},
+{
+  "_id": {
+    "$oid": "63e6046c44b881a2a1a9f826"
+  },
+  "user_id": "63cc0bb7fe55050a09baee09",
+  "total": 149,
+  "payment_details_id": "63e6046b44b881a2a1a9f825"
+},
+{
+  "_id": {
+    "$oid": "63ee98fbdebd7ba1775d9317"
+  },
+  "user_id": "63cc0bb7fe55050a09baee08",
+  "total": 700,
+  "payment_details_id": "63ee98fbdebd7ba1775d9316"
+},
+{
+  "_id": {
+    "$oid": "63e606fa0cbe6d8bd8b06051"
+  },
+  "user_id": "63cc0bb7fe55050a09baee08",
+  "total": 567,
+  "payment_details_id": "63e606f90cbe6d8bd8b06050"
+},
+{
+  "_id": {
+    "$oid": "63e6078b0cbe6d8bd8b060a3"
+  },
+  "user_id": "63cc0bb7fe55050a09baee09",
+  "total": 374,
+  "payment_details_id": "63e6078b0cbe6d8bd8b060a2"
+}]

@@ -1,0 +1,28 @@
+Here is the details for the {table_name}:
+
+```json
+{table_json}
+```
+
+Based on this json object, think and write a class in SQLAlchemy.
+
+*REMEMBER*: Already the inputs and the Base is taken care of. All you need to do is write the code for the class.
+```python
+from sqlalchemy.ext.declarative import declarative_base
+
+Base = declarative_base()
+```
+
+*IMPORTANT*: Output only your response as a Python code like in the below example, without other commentary, instructions and imports.
+```python
+from sqlalchemy import Column, Integer, String
+
+
+class Animal(Base):
+    __tablename__ = 'animals'
+
+    id = Column(Integer, primary_key=True)
+    name = Column(String)
+    type = Column(String)
+    price = Column(Integer)
+```

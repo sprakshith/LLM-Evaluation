@@ -1,0 +1,37 @@
+Here are the details for the new project:
+
+--------------------
+{web_application_requirements}
+--------------------
+
+Based on these details, analyze step by step to extract the API endpoints needed to be created to achieve the full backend functionality.
+
+1. First identify the number of endpoints required to successfully complete and meet all the requirements.
+2. Then for each endpoint identify what should be the API type, input parameters, output and other important details.
+
+*IMPORTANT*: Output only your response in JSON format like in the below shown example, without other commentary.
+```json
+{{
+    "description": "Details about all the API endpoints.",
+    "endpoints": [
+        {{
+            "route": "/api/auth/signin",
+            "type": "POST",
+            "input_params": [
+                "username",
+                "password"
+            ],
+            "output": "Signin user if the credentials are correct. Redirect to Index Page."
+        }},
+        {{
+            "endpoint": "/api/to-do-tasks",
+            "type": "GET",
+            "input_params": [
+                "user_id",
+            ],
+            "output": "[{{'serial_no': 1, 'name': '...', 'due_date': '...'}}]"
+        }},
+        ...
+    ]
+}}
+```

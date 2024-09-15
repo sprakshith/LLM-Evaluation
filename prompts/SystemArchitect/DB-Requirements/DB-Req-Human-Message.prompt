@@ -1,0 +1,32 @@
+Here are the details for the new project:
+
+--------------------
+{web_application_requirements}
+--------------------
+
+Based on these details, think step by step to design the database schema for the project which will be using a lightweight RDBMS called SQLite.
+
+1. First identify the number of tables which should be created to fullfil the requirements along with the columns that should be inside each table.
+2. Then identify the relations between different tables.
+
+*IMPORTANT*: Output only your response in JSON format like in this example, without other commentary:
+```json
+{{
+    "description": "Detailed description of the database schema",
+    "tables": [
+        {{
+            "name": "<<TABLE NAME>>",
+            "description": "<<DESCRIPTION OF THE TABLE>>",
+            "columns": [
+                {{
+                    'name': '<<COLUMN NAME>>',
+                    'type': '<<COLUMN TYPE, Ex: Integer, String etc>>',
+                    'description': '<<DESCRIPTION OF THE COLUMN>>'
+                }},
+                ...
+            ]
+        }},
+        ...
+    ]
+}}
+```

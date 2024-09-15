@@ -1,0 +1,23 @@
+Below are the details of the classes: {classes}.
+
+```python
+{classes_details}
+```
+
+Based on the classes definition: {coding_task}
+
+*IMPORTANT*: The python file contains the below code. Do not generate existing code again. A `session` object is already initialized by passing the necessary argument, use the initialized `session` object.
+```python
+{imports_and_initial_code}
+```
+
+*IMPORTANT*: Output only your response as a Python code as shown below, without other commentary and instructions. Make sure not to change the signature of the function. Use the function signature as it is and generate only the function body. After analysing the already provided code make sure to import other libraries which are not yet imported to necessarily achieve the task. DO NOT REPEAT YOURSELF.
+```python
+{function_name}
+   # Start Coding Here
+```
+
+*TEST CASES*: The written code should pass the below test cases:
+```python
+{test_cases}
+```

@@ -1,0 +1,26 @@
+Below are the details of all the available functions, along with the docstring:
+```python
+{utility_function_details}
+```
+*NOTE*: The list of objects that the above functions return have foreign key relationship between objects. This means that one object is linked to another through a key either interger or string, such as `Dog.id` == `Shelter.dog`. It's important to understand that this doesn't imply that an object contains another object. For instance, the `Shelter` class doesn't contain a `Dog` object. If you try to access `shelter.dog.id`, it will lead to an exception similar to: AttributeError: 'int' object has no attribute 'id', because the `dog` attribute in the `Shelter` is an `Interger` type and not a `Dog` type object.
+
+Analyze the above provided functions and it's docstring. Then solve the below task:
+```
+{coding_task}
+```
+
+*IMPORTANT*: The python file contains the below code. Do not generate existing code again.
+```python
+{imports}
+```
+
+*IMPORTANT*: Output only your response as a Python code as shown below, without other commentary and instructions. Make sure not to change the signature of the function. Use the function signature as it is and generate only the function body. After analysing the already provided code make sure to import other libraries which are not yet imported to necessarily achieve the task. DO NOT REPEAT YOURSELF.
+```python
+{function_name}
+   # Start Coding Here
+```
+
+*TEST CASES*: The written code should pass the below test cases:
+```python
+{test_cases}
+```

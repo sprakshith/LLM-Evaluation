@@ -1,0 +1,262 @@
+[
+    {
+        "id": 1,
+        "classes": ["Manufacturer"],
+        "classes_details": "class Manufacturer(Base):\n    __tablename__ = 'manufacturers'\n\n    code = Column(Integer, primary_key=True)\n    name = Column(String(255), nullable=False)",
+        "coding_task": "Write a python function using SQLAlchemy to fetch all the names of the manufacturers. And return them as a python list.",
+        "imports": "from database.utils import get_session\nfrom database.schemas.computer_store import Manufacturer",
+        "initial_code": "session = get_session('computer_store')",
+        "function_name": "def get_all_manufacturer_names():",
+        "test_cases": ["assert type(get_all_manufacturer_names()) == list", "assert len(get_all_manufacturer_names()) == 6"]
+    },
+    {
+        "id": 2,
+        "classes": ["Product"],
+        "classes_details": "class Product(Base):\n    __tablename__ = 'products'\n\n    code = Column(Integer, primary_key=True)\n    name = Column(String(255), nullable=False)\n    price = Column(Integer, nullable=False)\n    manufacturer = Column(Integer, ForeignKey('manufacturers.code'), nullable=False)",
+        "coding_task": "Write a python function using SQLAlchemy which takes in `max_price` as an argument and fetches names of all the product that costs less than or equal to the `max_price`. After fetching returns the names as a python list.",
+        "imports": "from database.utils import get_session\nfrom database.schemas.computer_store import Product",
+        "initial_code": "session = get_session('computer_store')",
+        "function_name": "def get_product_names(max_price):",
+        "test_cases": ["assert type(get_product_names(200)) == list", "assert len(get_product_names(200)) == 7", "assert len(get_product_names(5)) == 1"]
+    },
+    {
+        "id": 3,
+        "classes": ["Product"],
+        "classes_details": "class Product(Base):\n    __tablename__ = 'products'\n\n    code = Column(Integer, primary_key=True)\n    name = Column(String(255), nullable=False)\n    price = Column(Integer, nullable=False)\n    manufacturer = Column(Integer, ForeignKey('manufacturers.code'), nullable=False)",
+        "coding_task": "Write a python function using SQLAlchemy which takes in `manufacturer_code` as an argument and computes the average price of all the products of that manufacturer. Then return the average price as a float.",
+        "imports": "from database.utils import get_session\nfrom database.schemas.computer_store import Product",
+        "initial_code": "session = get_session('computer_store')",
+        "function_name": "def get_average_price(manufacturer_code):",
+        "test_cases": ["assert get_average_price(2) == 150.0", "assert get_average_price(6) == 62.5"]
+    },
+    {
+        "id": 4,
+        "classes": ["Product", "Manufacturer"],
+        "classes_details": "class Manufacturer(Base):\n    __tablename__ = 'manufacturers'\n\n    code = Column(Integer, primary_key=True)\n    name = Column(String(255), nullable=False)\n\n\nclass Product(Base):\n    __tablename__ = 'products'\n\n    code = Column(Integer, primary_key=True)\n    name = Column(String(255), nullable=False)\n    price = Column(Integer, nullable=False)\n    manufacturer = Column(Integer, ForeignKey('manufacturers.code'), nullable=False)",
+        "coding_task": "Write a python function using SQLAlchemy which returns a cheapest product of each manufacturer. The function should return a dictionary where key is the manufacturer name and value is the name of the product.",
+        "imports": "from database.utils import get_session\nfrom database.schemas.computer_store import Manufacturer, Product",
+        "initial_code": "session = get_session('computer_store')",
+        "function_name": "def get_cheapest_products():",
+        "test_cases": ["assert type(get_cheapest_products()) == dict", "assert get_cheapest_products()['Sony'] == 'Monitor'", "assert get_cheapest_products()['Creative Labs'] == 'CD drive'"]
+    },
+    {
+        "id": 5,
+        "classes": ["Product", "Manufacturer"],
+        "classes_details": "class Manufacturer(Base):\n    __tablename__ = 'manufacturers'\n\n    code = Column(Integer, primary_key=True)\n    name = Column(String(255), nullable=False)\n\n\nclass Product(Base):\n    __tablename__ = 'products'\n\n    code = Column(Integer, primary_key=True)\n    name = Column(String(255), nullable=False)\n    price = Column(Integer, nullable=False)\n    manufacturer = Column(Integer, ForeignKey('manufacturers.code'), nullable=False)",
+        "coding_task": "Write a python function using SQLAlchemy which takes in a `character` as an argument and if that character is present in the name of the manufacturer then fetch all those manufacturers. Once done, then find max price of the products of each manufacturer. Return a dictionary where key is the manufacturer name and value is the max price.",
+        "imports": "from database.utils import get_session\nfrom database.schemas.computer_store import Manufacturer, Product",
+        "initial_code": "session = get_session('computer_store')",
+        "function_name": "def get_max_price(character):",
+        "test_cases": ["assert get_max_price('o')['Sony'] == 240", "assert get_max_price('o')['Iomega'] == 150", "assert get_max_price('C')['Creative Labs'] == 180"]
+    },
+    {
+        "id": 6,
+        "classes": ["Department"],
+        "classes_details": "class Department(Base):\n    __tablename__ = 'departments'\n\n    code = Column(Integer, primary_key=True)\n    name = Column(String(255), nullable=False)\n    budget = Column(Integer, nullable=False)",
+        "coding_task": "Write a python function using SQLAlchemy to compute the total and average budget of the company. The function should return a tuple where the first element is the total budget and the second element is the average budget.",
+        "imports": "from database.utils import get_session\nfrom database.schemas.employee_management import Department",
+        "initial_code": "session = get_session('employee_management')",
+        "function_name": "def get_budget_metrics():",
+        "test_cases": ["assert type(get_budget_metrics()) == tuple", "assert get_budget_metrics()[0] == 159000", "assert get_budget_metrics()[1] == 39750"]
+    },
+    {
+        "id": 7,
+        "classes": ["Department", "Employee"],
+        "classes_details": "class Department(Base):\n    __tablename__ = 'departments'\n\n    code = Column(Integer, primary_key=True)\n    name = Column(String(255), nullable=False)\n    budget = Column(Integer, nullable=False)\n\n\nclass Employee(Base):\n    __tablename__ = 'employees'\n\n    ssn = Column(Integer, primary_key=True)\n    name = Column(String(255), nullable=False)\n    last_name = Column(String(255), nullable=False)\n    department = Column(Integer, ForeignKey('departments.code'), nullable=False)",
+        "coding_task": "Write a python function using SQLAlchemy to find the number of employees in each department. The function should return a dictionary where key is the department name and value is the number of employees.",
+        "imports": "from database.utils import get_session\nfrom database.schemas.employee_management import Department, Employee",
+        "initial_code": "session = get_session('employee_management')",
+        "function_name": "def get_employee_count():",
+        "test_cases": ["assert type(get_employee_count()) == dict", "assert get_employee_count()['IT'] == 5", "assert get_employee_count()['Research'] == 2"]
+    },
+    {
+        "id": 8,
+        "classes": ["Department", "Employee"],
+        "classes_details": "class Department(Base):\n    __tablename__ = 'departments'\n\n    code = Column(Integer, primary_key=True)\n    name = Column(String(255), nullable=False)\n    budget = Column(Integer, nullable=False)\n\n\nclass Employee(Base):\n    __tablename__ = 'employees'\n\n    ssn = Column(Integer, primary_key=True)\n    name = Column(String(255), nullable=False)\n    last_name = Column(String(255), nullable=False)\n    department = Column(Integer, ForeignKey('departments.code'), nullable=False)",
+        "coding_task": "Write a python function using SQLAlchemy to fetch all the employees with the department details as well. The function should return a list of dictionaries where each dictionary represents an employee. Use the column names as keys in the dictionary and for conflicting column names (only for conflicting column names)use suffixes as '_E' for Employee and '_D' for Department.",
+        "imports": "from database.utils import get_session\nfrom database.schemas.employee_management import Department, Employee",
+        "initial_code": "session = get_session('employee_management')",
+        "function_name": "def get_employee_details():",
+        "test_cases": ["assert type(get_employee_details()) == list", "assert len(get_employee_details()) == 12", "assert get_employee_details()[0]['name_E'] == 'Michael'", "assert get_employee_details()[0]['name_D'] == 'IT'", "assert get_employee_details()[0]['last_name'] == 'Rogers'"]
+    },
+    {
+        "id": 9,
+        "classes": ["Department"],
+        "classes_details": "class Department(Base):\n    __tablename__ = 'departments'\n\n    code = Column(Integer, primary_key=True)\n    name = Column(String(255), nullable=False)\n    budget = Column(Integer, nullable=False)",
+        "coding_task": "Write a python function using SQLAlchemy which takes in three arguments `code`, `name` and `budget`. The function should add a new department with the given details.",
+        "imports": "from database.utils import get_session\nfrom database.schemas.employee_management import Department",
+        "initial_code": "session = get_session('employee_management')",
+        "function_name": "def add_new_dept(code, name, budget):",
+        "pre_test_code": "add_new_dept(7, 'Quality Assurance', 50000)",
+        "test_cases": ["assert type(session.query(Department).filter(Department.code == 7).first()) == Department", "assert session.query(Department).filter(Department.code == 7).first().name == 'Quality Assurance'", "assert session.query(Department).filter(Department.code == 7).first().budget == 50000"],
+        "post_test_code": "session.query(Department).filter(Department.code == 7).delete()\n        session.commit()"
+    },
+    {
+        "id": 10,
+        "classes": ["Employee"],
+        "classes_details": "class Employee(Base):\n    __tablename__ = 'employees'\n\n    ssn = Column(Integer, primary_key=True)\n    name = Column(String(255), nullable=False)\n    last_name = Column(String(255), nullable=False)\n    department = Column(Integer, ForeignKey('departments.code'), nullable=False)",
+        "coding_task": "Write a python function using SQLAlchemy which takes in two arguments `ssn` of employee, `code` of the department. The function should update the department of the employee with the given `ssn`.",
+        "imports": "from database.utils import get_session\nfrom database.schemas.employee_management import Employee",
+        "initial_code": "session = get_session('employee_management')",
+        "function_name": "def move_employee(ssn, dept_code):",
+        "pre_test_code": "move_employee('332569843', 14)",
+        "test_cases": ["assert session.query(Employee).filter(Employee.ssn == '332569843').first().department == 14"],
+        "post_test_code": "move_employee('332569843', 77)"
+    },
+    {
+        "id": 11,
+        "classes": ["Scientist"],
+        "classes_details": "class Scientist(Base):\n    __tablename__ = 'scientists'\n\n    ssn = Column(Integer, primary_key=True)\n    name = Column(String(30), nullable=False)",
+        "coding_task": "Write a python function using SQLAlchemy which will extract ssn and names of all the scientists. Return them as a list of dictionaries where each dictionary contains the keys `ssn` and `name`.",
+        "imports": "from database.utils import get_session\nfrom database.schemas.scientists import Scientist, Project, AssignedTo",
+        "initial_code": "session = get_session('scientists')",
+        "function_name": "def get_all_scientist():",
+        "test_cases": ["assert type(get_all_scientist()) == list", "assert type(get_all_scientist()[0]) == dict", "assert len(get_all_scientist()) == 12"]
+    },
+    {
+        "id": 12,
+        "classes": ["Scientist", "Project", "AssignedTo"],
+        "classes_details": "class Scientist(Base):\n    __tablename__ = 'scientists'\n\n    ssn = Column(Integer, primary_key=True)\n    name = Column(String(30), nullable=False)\n\n\nclass Project(Base):\n    __tablename__ = 'projects'\n\n    code = Column(String(4), primary_key=True)\n    name = Column(String(50), nullable=False)\n    hours = Column(Integer, nullable=False)\n\n\nclass AssignedTo(Base):\n    __tablename__ = 'assigned_to'\n\n    scientist = Column(Integer, ForeignKey('scientists.ssn'), primary_key=True)\n    project = Column(String(4), ForeignKey('projects.code'), primary_key=True)",
+        "coding_task": "Write a python function using SQLAlchemy which will first find all the projects which have `Aerodynamics` in their name. Then for each project it will find all the scientists working on that particular project. It should return a list of dictionaries which will contain 2 keys `project_name` & `scientists`. The `scientists` key will hold names of scientists working on that project in the form of a python list. If the project is not yet assigned then `scientists` key should contain empty python list. Here is an example: [{'project_name': 'Project Aerodynamics', 'scientists': ['Scientist_1', 'Scientist_2']}].",
+        "imports": "from database.utils import get_session\nfrom database.schemas.scientists import Scientist, Project, AssignedTo",
+        "initial_code": "session = get_session('scientists')",
+        "function_name": "def get_aerodynamics_projects():",
+        "test_cases": ["assert type(get_aerodynamics_projects()) == list", "assert type(get_aerodynamics_projects()[0]) == dict", "assert type(get_aerodynamics_projects()[0]['scientists']) == list", "assert len(get_aerodynamics_projects()) == 5"]
+    },
+    {
+        "id": 13,
+        "classes": ["Scientist", "Project", "AssignedTo"],
+        "classes_details": "class Scientist(Base):\n    __tablename__ = 'scientists'\n\n    ssn = Column(Integer, primary_key=True)\n    name = Column(String(30), nullable=False)\n\n\nclass Project(Base):\n    __tablename__ = 'projects'\n\n    code = Column(String(4), primary_key=True)\n    name = Column(String(50), nullable=False)\n    hours = Column(Integer, nullable=False)\n\n\nclass AssignedTo(Base):\n    __tablename__ = 'assigned_to'\n\n    scientist = Column(Integer, ForeignKey('scientists.ssn'), primary_key=True)\n    project = Column(String(4), ForeignKey('projects.code'), primary_key=True)",
+        "coding_task": "Write a python function using SQLAlchemy which will find the names of all the projects on which multiple scientists are working. The function should return a list of project names in alphabetical order.",
+        "imports": "from database.utils import get_session\nfrom database.schemas.scientists import Scientist, Project, AssignedTo",
+        "initial_code": "session = get_session('scientists')",
+        "function_name": "def get_projects_with_multiple_scientist():",
+        "test_cases": ["assert len(get_projects_with_multiple_scientist()) == 3", "assert get_projects_with_multiple_scientist()[0] == 'A Silver-Cleaning Battery'"]
+    },
+    {
+        "id": 14,
+        "classes": ["Scientist", "Project", "AssignedTo"],
+        "classes_details": "class Scientist(Base):\n    __tablename__ = 'scientists'\n\n    ssn = Column(Integer, primary_key=True)\n    name = Column(String(30), nullable=False)\n\n\nclass Project(Base):\n    __tablename__ = 'projects'\n\n    code = Column(String(4), primary_key=True)\n    name = Column(String(50), nullable=False)\n    hours = Column(Integer, nullable=False)\n\n\nclass AssignedTo(Base):\n    __tablename__ = 'assigned_to'\n\n    scientist = Column(Integer, ForeignKey('scientists.ssn'), primary_key=True)\n    project = Column(String(4), ForeignKey('projects.code'), primary_key=True)",
+        "coding_task": "Write a python function using SQLAlchemy which will find all the scientists' names, their projects' names and the hours, arrange in alphabetical order of project name, then scientist name. The function should return a list of dictionaries where each dictionary contains the keys `scientist_name`, `project_name` and `hours`.",
+        "imports": "from database.utils import get_session\nfrom database.schemas.scientists import Scientist, Project, AssignedTo",
+        "initial_code": "session = get_session('scientists')",
+        "function_name": "def get_scientists_projects_hours():",
+        "test_cases": ["assert len(get_scientists_projects_hours()) == 12", "assert get_scientists_projects_hours()[0]['scientist_name'] == 'Elizabeth Doe'", "assert get_scientists_projects_hours()[11]['project_name'] == 'Winds: Studying Bernoullis Principle'", "assert get_scientists_projects_hours()[11]['hours'] == 156"]
+    },
+    {
+        "id": 15,
+        "classes": ["Scientist", "Project", "AssignedTo"],
+        "classes_details": "class Scientist(Base):\n    __tablename__ = 'scientists'\n\n    ssn = Column(Integer, primary_key=True)\n    name = Column(String(30), nullable=False)\n\n\nclass Project(Base):\n    __tablename__ = 'projects'\n\n    code = Column(String(4), primary_key=True)\n    name = Column(String(50), nullable=False)\n    hours = Column(Integer, nullable=False)\n\n\nclass AssignedTo(Base):\n    __tablename__ = 'assigned_to'\n\n    scientist = Column(Integer, ForeignKey('scientists.ssn'), primary_key=True)\n    project = Column(String(4), ForeignKey('projects.code'), primary_key=True)",
+        "coding_task": "Write a python function using SQLAlchemy which will find all the projects' names which are not assigned yet. Return the projects' name as a list in alphabetical order of the names.",
+        "imports": "from database.utils import get_session\nfrom database.schemas.scientists import Scientist, Project, AssignedTo",
+        "initial_code": "session = get_session('scientists')",
+        "function_name": "def get_unassigned_projects():",
+        "test_cases": ["assert len(get_unassigned_projects()) == 6", "assert get_unassigned_projects()[0] == 'A Magnetic Primer Designer'", "assert get_unassigned_projects()[-1] == 'Bacterial Transformation Efficiency'"]
+    },
+    {
+        "id": 16,
+        "classes": ["Client", "Package"],
+        "classes_details": "class Client(Base):\n    __tablename__ = 'client'\n\n    account_number = Column(Integer, primary_key=True)\n    name = Column(String(255), nullable=False)\n\n\nclass Package(Base):\n    __tablename__ = 'package'\n\n    shipment = Column(Integer, ForeignKey('shipment.shipment_id'), primary_key=True)\n    package_number = Column(Integer, primary_key=True)\n    contents = Column(String(255), nullable=False)\n    weight = Column(Float, nullable=False)\n    sender = Column(Integer, ForeignKey('client.account_number'), nullable=False)\n    recipient = Column(Integer, ForeignKey('client.account_number'), nullable=False)",
+        "coding_task": "Write a python function using SQLAlchemy which will take in `weight` as an argument and find all the packages which have weight equal to the given `weight`, then find all the recipient name who ordered packages of that weight. Return the names of the clients as a python list.",
+        "imports": "from database.utils import get_session\nfrom database.schemas.planet_express import Client, Package",
+        "initial_code": "session = get_session('planet_express')",
+        "function_name": "def get_clients_with_weight(weight):",
+        "test_cases": ["assert len(get_clients_with_weight(100)) == 1", "assert get_clients_with_weight(100)[0] == 'Zapp Brannigan'"]
+    },
+    {
+        "id": 17, 
+        "classes": ["Client", "Package"],
+        "classes_details": "class Client(Base):\n    __tablename__ = 'client'\n\n    account_number = Column(Integer, primary_key=True)\n    name = Column(String(255), nullable=False)\n\n\nclass Package(Base):\n    __tablename__ = 'package'\n\n    shipment = Column(Integer, ForeignKey('shipment.shipment_id'), primary_key=True)\n    package_number = Column(Integer, primary_key=True)\n    contents = Column(String(255), nullable=False)\n    weight = Column(Float, nullable=False)\n    sender = Column(Integer, ForeignKey('client.account_number'), nullable=False)\n    recipient = Column(Integer, ForeignKey('client.account_number'), nullable=False)",
+        "coding_task": "Write a python function using SQLAlchemy which will take in `client_name` as an argument and find total weights of all the packages which are sent by the given client. Return the total weight.",
+        "imports": "from database.utils import get_session\nfrom database.schemas.planet_express import Client, Package",
+        "initial_code": "session = get_session('planet_express')",
+        "function_name": "def get_total_weight(client_name):",
+        "test_cases": ["assert get_total_weight(client_name='Leo Wong') == 103.0"]
+    },
+    {
+        "id": 18,
+        "classes": ["Package"],
+        "classes_details": "class Package(Base):\n    __tablename__ = 'package'\n\n    shipment = Column(Integer, ForeignKey('shipment.shipment_id'), primary_key=True)\n    package_number = Column(Integer, primary_key=True)\n    contents = Column(String(255), nullable=False)\n    weight = Column(Float, nullable=False)\n    sender = Column(Integer, ForeignKey('client.account_number'), nullable=False)\n    recipient = Column(Integer, ForeignKey('client.account_number'), nullable=False)",
+        "coding_task": "Write a python function using SQLAlchemy which will take in `shipment`, `package_number`, `contents`, `weight`, `sender` and `recipient` as arguments and add a new package with the given details.",
+        "imports": "from database.utils import get_session\nfrom database.schemas.planet_express import Package",
+        "initial_code": "session = get_session('planet_express')",
+        "function_name": "def add_new_package(shipment, package_number, contents, weight, sender, recipient):",
+        "pre_test_code": "add_new_package(5, 2, 'Mug full of luck', 0.5, 4, 1)",
+        "test_cases": ["assert session.query(Package).filter(Package.shipment == 5, Package.package_number == 2).first().contents == 'Mug full of luck'", "assert session.query(Package).filter(Package.shipment == 5, Package.package_number == 2).first().weight == 0.5"],
+        "post_test_code": "session.query(Package).filter(Package.shipment == 5, Package.package_number == 2).delete()\n        session.commit()"
+    },
+    {
+        "id": 19,
+        "classes": ["Client"],
+        "classes_details": "class Client(Base):\n    __tablename__ = 'client'\n\n    account_number = Column(Integer, primary_key=True)\n    name = Column(String(255), nullable=False)",
+        "coding_task": "Write a python function using SQLAlchemy which will take in `account_number` as an argument and delete the client with the given account number.",
+        "imports": "from database.utils import get_session\nfrom database.schemas.planet_express import Client",
+        "initial_code": "session = get_session('planet_express')",
+        "function_name": "def remove_client(account_number):",
+        "pre_test_code": "remove_client(11)",
+        "test_cases": ["assert session.query(Client).filter(Client.account_number == 11).count() == 0"],
+        "post_test_code": "new_client = Client(account_number=11, name='Calculon')\n        session.add(new_client)\n        session.commit()"
+    },
+    {
+        "id": 20,
+        "classes": ["Employee"],
+        "classes_details": "class Employee(Base):\n    __tablename__ = 'employee'\n\n    employee_id = Column(Integer, primary_key=True)\n    name = Column(String(255), nullable=False)\n    position = Column(String(255), nullable=False)\n    salary = Column(Float, nullable=False)\n    remarks = Column(String(255))",
+        "coding_task": "Write a python function using SQLAlchemy which will take in `employee_id` and `position` as an argument and update the position of the employee with the given `employee_id`.",
+        "imports": "from database.utils import get_session\nfrom database.schemas.planet_express import Employee",
+        "initial_code": "session = get_session('planet_express')",
+        "function_name": "def update_employee_position(employee_id, position):",
+        "pre_test_code": "update_employee_position(3, 'AI Powered Robot')",
+        "test_cases": ["assert session.query(Employee).filter(Employee.employee_id == 3).first().position == 'AI Powered Robot'"],
+        "post_test_code": "update_employee_position(3, 'Robot')"
+    },
+    {
+        "id": 21,
+        "classes": ["Appointment"],
+        "classes_details": "class Appointment(Base):\n    __tablename__ = 'appointments'\n\n    appointment_id = Column(Integer, primary_key=True)\n    patient = Column(Integer, ForeignKey('patients.ssn'), nullable=False)\n    prep_nurse = Column(Integer, ForeignKey('nurses.employee_id'))\n    physician = Column(Integer, ForeignKey('physicians.employee_id'), nullable=False)\n    start = Column(Date, nullable=False)\n    end = Column(Date, nullable=False)\n    examination_room = Column(String(30), nullable=False)",
+        "coding_task": "Write a python function using SQLAlchemy which find all the examination rooms and the number of appointments scheduled in each room. Return the information as a dictionary where key is the examination room and value is the number of appointments.",
+        "imports": "from database.utils import get_session\nfrom database.schemas.hospital import Appointment",
+        "initial_code": "session = get_session('hospital')",
+        "function_name": "def get_appointments_count():",
+        "test_cases": ["assert len(get_appointments_count().keys()) == 3", "assert get_appointments_count()['A'] == 3", "assert get_appointments_count()['C'] == 3"]
+    },
+    {
+        "id": 22,
+        "classes": ["Physician", "Undergoes", "TrainedIn"],
+        "classes_details": "class Physician(Base):\n    __tablename__ = 'physicians'\n\n    employee_id = Column(Integer, primary_key=True)\n    name = Column(String(30), nullable=False)\n    position = Column(String(30), nullable=False)\n    ssn = Column(Integer, nullable=False)\n\n\nclass Undergoes(Base):\n    __tablename__ = 'undergoes'\n\n    patient = Column(Integer, ForeignKey('patients.ssn'), primary_key=True)\n    procedures = Column(Integer, ForeignKey('procedures.code'), primary_key=True)\n    stay = Column(Integer, ForeignKey('stays.stay_id'), primary_key=True)\n    date_undergoes = Column(Date, primary_key=True)\n    physician = Column(Integer, ForeignKey('physicians.employee_id'), primary_key=True)\n    assisting_nurse = Column(Integer, ForeignKey('nurses.employee_id'))\n\n\nclass TrainedIn(Base):\n    __tablename__ = 'trained_in'\n\n    physician = Column(Integer, ForeignKey('physicians.employee_id'), primary_key=True)\n    treatment = Column(Integer, ForeignKey('procedures.code'), primary_key=True)\n    certification_date = Column(Date, nullable=False)\n    certification_expires = Column(Date, nullable=False)",
+        "coding_task": "Write a python function using SQLAlchemy which find the names of all the physicians who have performed a medical procedure they do no possess the certificate to perform. Return the names as a python list.",
+        "imports": "from database.utils import get_session\nfrom database.schemas.hospital import Physician, Undergoes, TrainedIn",
+        "initial_code": "session = get_session('hospital')",
+        "function_name": "def get_physicians_with_unauthorized_procedure:",
+        "test_cases": ["assert len(get_physicians_with_unauthorized_procedure()) == 1", "assert get_physicians_with_unauthorized_procedure()[0] == 'Christopher Turk'"]
+    },
+    {
+        "id": 23,
+        "classes": ["Physician", "Undergoes", "TrainedIn"],
+        "classes_details": "class Physician(Base):\n    __tablename__ = 'physicians'\n\n    employee_id = Column(Integer, primary_key=True)\n    name = Column(String(30), nullable=False)\n    position = Column(String(30), nullable=False)\n    ssn = Column(Integer, nullable=False)\n\n\nclass Undergoes(Base):\n    __tablename__ = 'undergoes'\n\n    patient = Column(Integer, ForeignKey('patients.ssn'), primary_key=True)\n    procedures = Column(Integer, ForeignKey('procedures.code'), primary_key=True)\n    stay = Column(Integer, ForeignKey('stays.stay_id'), primary_key=True)\n    date_undergoes = Column(Date, primary_key=True)\n    physician = Column(Integer, ForeignKey('physicians.employee_id'), primary_key=True)\n    assisting_nurse = Column(Integer, ForeignKey('nurses.employee_id'))\n\n\nclass TrainedIn(Base):\n    __tablename__ = 'trained_in'\n\n    physician = Column(Integer, ForeignKey('physicians.employee_id'), primary_key=True)\n    treatment = Column(Integer, ForeignKey('procedures.code'), primary_key=True)\n    certification_date = Column(Date, nullable=False)\n    certification_expires = Column(Date, nullable=False)",
+        "coding_task": "Write a python function using SQLAlchemy to obtain the names of all physicians that have performed a medical procedure that they are certified to perform, but such that the procedure was done at a date (Undergoes.date_undergoes) after the physician's certification expired (TrainedIn.certification_expires)",
+        "imports": "from database.utils import get_session\nfrom database.schemas.hospital import Physician, Undergoes, TrainedIn",
+        "initial_code": "session = get_session('hospital')",
+        "function_name": "def get_physicians_with_expired_certificate():",
+        "test_cases": ["assert len(get_physicians_with_expired_certificate()) == 1", "assert get_physicians_with_expired_certificate()[0] == 'Todd Quinlan'"]
+    },
+    {
+        "id": 24,
+        "classes": ["Physician", "Patient","Appointment"],
+        "classes_details": "class Physician(Base):\n    __tablename__ = 'physicians'\n\n    employee_id = Column(Integer, primary_key=True)\n    name = Column(String(30), nullable=False)\n    position = Column(String(30), nullable=False)\n    ssn = Column(Integer, nullable=False)\n\n\nclass Patient(Base):\n    __tablename__ = 'patients'\n\n    ssn = Column(Integer, primary_key=True)\n    name = Column(String(30), nullable=False)\n    address = Column(String(30), nullable=False)\n    phone = Column(String(30), nullable=False)\n    insurance_id = Column(Integer, nullable=False)\n    pcp = Column(Integer, ForeignKey('physicians.employee_id'), nullable=False)\n\n\nclass Appointment(Base):\n    __tablename__ = 'appointments'\n\n    appointment_id = Column(Integer, primary_key=True)\n    patient = Column(Integer, ForeignKey('patients.ssn'), nullable=False)\n    prep_nurse = Column(Integer, ForeignKey('nurses.employee_id'))\n    physician = Column(Integer, ForeignKey('physicians.employee_id'), nullable=False)\n    start = Column(Date, nullable=False)\n    end = Column(Date, nullable=False)\n    examination_room = Column(String(30), nullable=False)",
+        "coding_task": "Write a python function using SQLAlchemy to obtain the information for appointments where a patient met with a physician other than his/her primary care physician. Extract the following information: Patient name, physician name, and the name of the patient's primary care physician(Patient.pcp). Return the information as a list of dictionaries where each dictionary contains the keys `patient_name`, `physician_name` and `pcp_name`.",
+        "imports": "from database.utils import get_session\nfrom database.schemas.hospital import Physician, Patient, Appointment",
+        "initial_code": "session = get_session('hospital')",
+        "function_name": "def get_patients_with_other_physician():",
+        "test_cases": ["assert len(get_patients_with_other_physician()) == 4", "assert 'Dennis Doe' in [x['patient_name'] for x in get_patients_with_other_physician()]"]
+    },
+    {
+        "id": 25,
+        "classes": ["Nurse", "Room", "OnCall"],
+        "classes_details": "class Nurse(Base):\n    __tablename__ = 'nurses'\n\n    employee_id = Column(Integer, primary_key=True)\n    name = Column(String(30), nullable=False)\n    position = Column(String(30), nullable=False)\n    registered = Column(Integer, nullable=False)\n    ssn = Column(Integer, nullable=False)\n\n\nclass Room(Base):\n    __tablename__ = 'rooms'\n\n    room_number = Column(Integer, primary_key=True)\n    room_type = Column(String(30), nullable=False)\n    block_floor = Column(Integer, ForeignKey('blocks.block_floor'), nullable=False)\n    block_code = Column(Integer, ForeignKey('blocks.block_code'), nullable=False)\n    unavailable = Column(Integer, nullable=False)\n\n\nclass OnCall(Base):\n    __tablename__ = 'on_call'\n\n    nurse = Column(Integer, ForeignKey('nurses.employee_id'), primary_key=True)\n    block_floor = Column(Integer, ForeignKey('blocks.block_floor'), primary_key=True)\n    block_code = Column(Integer, ForeignKey('blocks.block_code'), primary_key=True)\n    on_call_start = Column(Date, primary_key=True)\n    on_call_end = Column(Date, primary_key=True)",
+        "coding_task": "Write a python function using SQLAlchemy which will take in `room_number` as an argument and find the names of all the nurses who have ever been on call for room `room_number`. Return the names as a python list.",
+        "imports": "from database.utils import get_session\nfrom database.schemas.hospital import Nurse, Room, OnCall",
+        "initial_code": "session = get_session('hospital')",
+        "function_name": "def get_nurses_on_call(room_number):",
+        "test_cases": ["assert len(get_nurses_on_call(123)) == 2", "assert 'Laverne Roberts' in get_nurses_on_call(123)", "assert 'Paul Flowers' in get_nurses_on_call(123)"]
+    }
+]

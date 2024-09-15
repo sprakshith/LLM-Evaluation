@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Results</title>
+
+    <!-- Bootstrap CSS & JS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+
+    <!-- Chart JS-->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Prism CSS and JS-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css" rel="stylesheet" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-javascript.min.js"></script>
+
+    <!-- Custom CSS -->
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 40px;
+      }
+
+      .accordion-item {
+        margin-bottom: 20px;
+      }
+    </style>
+
+    <script>
+      $(document).ready(function () {
+        $.ajax({
+          url: window.location.origin + "/evaluation_data/" + $("#agent_type").val() + "/" + $("#model_id").val(),
+          type: "GET",
+          dataType: "json",
+          success: function (response) {
+            // FILLING ALL THE KPIs
+            $("#card-1-main-text").text(response.total_tasks);
+            $("#card-2-main-text").text(response.average_codebleu);
+
+            // PLOTTING TASK ID VS CodeBleu Score
+            const ctx = document.getElementById("chart_one");
+			console.log(response.average_codebleu_per_task.map((i) => i["average_codebleu"]))
+            new Chart(ctx, {
+              type: "line",
+              data: {
+                labels: response.average_codebleu_per_task.map((i) => i["task_id"]),
+                datasets: [
+                  {
+                    label: "CodeBleu Score",
+                    data: response.average_codebleu_per_task.map((i) => i["average_codebleu"]),
+                    fill: false,
+                    borderColor: "rgb(54, 162, 235)",
+                    tension: 0.3,
+                  },
+                ],
+              },
+              options: {
+                plugins: {
+                  legend: {
+                    display: false,
+                  },
+                },
+                scales: {
+                  x: {
+                    title: {
+                      display: true,
+                      text: "Task ID",
+                      font: {
+                        size: 16,
+                      },
+                    },
+                  },
+                  y: {
+                    title: {
+                      display: true,
+                      text: "CodeBleu Score",
+                      font: {
+                        size: 16,
+                      },
+                    },
+                  },
+                },
+              },
+            });
+
+            // PLOTTING OtherModels VS Avg. CodeBleu Score
+            const ctx2 = document.getElementById("chart_two");
+
+            colors = ["rgb(255, 99, 132)", "rgb(54, 162, 235)", "rgb(255, 206, 86)", "rgb(75, 192, 192)", "rgb(153, 102, 255)", "rgb(255, 159, 64)", "rgb(255, 99, 132)", "rgb(54, 162, 235)", "rgb(255, 206, 86)", "rgb(75, 192, 192)", "rgb(153, 102, 255)", "rgb(255, 159, 64)"];
+
+            new Chart(ctx2, {
+              type: "bar",
+              data: {
+                labels: response.other_models.map((i) => i["model_name"]),
+                datasets: [
+                  {
+                    label: "Avg. CodeBleu Score",
+                    data: response.other_models.map((i) => i["average_codebleu"]),
+                    backgroundColor: colors.slice(0, response.other_models.length),
+                  },
+                ],
+              },
+              options: {
+                plugins: {
+                  legend: {
+                    display: false,
+                  },
+                },
+                scales: {
+                  x: {
+                    title: {
+                      display: true,
+                      text: "Model Name",
+                      font: {
+                        size: 16,
+                      },
+                    },
+                  },
+                  y: {
+                    title: {
+                      display: true,
+                      text: "Avg. CodeBleu Score",
+                      font: {
+                        size: 16,
+                      },
+                    },
+                  },
+                },
+              },
+            });
+          },
+        });
+      });
+    </script>
+  </head>
+
+  <body>
+    <input type="hidden" id="agent_type" value="{{ results.agent_type }}" />
+    <input type="hidden" id="model_id" value="{{ results.model_id }}" />
+
+    <div class="d-flex justify-content-center mb-5">
+      <h6 class="display-6" id="page-title">Evaluation of {{ results.name }}</h6>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="card kpi" style="width: 100%; margin-bottom: 60px">
+          <div class="card-body">
+            <h6 class="card-subtitle mt-2 mb-2 text-muted">Total Tasks Attempted</h6>
+            <span class="card-title" id="card-1-main-text" style="font-size: 35px">0</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="card" style="width: 100%; margin-bottom: 60px">
+          <div class="card-body">
+            <h6 class="card-subtitle mt-2 mb-2 text-muted">Average CodeBleu Score</h6>
+            <span class="card-title" id="card-2-main-text" style="font-size: 35px">0</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6">
+        <div>
+          <canvas id="chart_one"></canvas>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div>
+          <canvas id="chart_two"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <br />
+    <hr />
+    <br />
+
+    <div class="d-flex justify-content-center mb-5">
+      <h6 class="display-6" id="page-title">Prompts, Responses & Results</h6>
+    </div>
+
+    <div class="accordion" id="all-tasks-accordion">
+      {% for result in results['test_results'] %}
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="heading_{{ result['task_id'] }}">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_{{ result['task_id'] }}" aria-expanded="false" aria-controls="collapse_{{ result['task_id'] }}">Task {{ result['task_id'] }}</button>
+        </h2>
+        <div id="collapse_{{ result['task_id'] }}" class="accordion-collapse collapse" aria-labelledby="heading_{{ result['task_id'] }}" data-bs-parent="#all-tasks-accordion">
+          <div class="accordion-body">
+            <h3 class="mt-5"><strong>Prompt:</strong></h3>
+            <pre><code class="language-python" style="white-space: pre-wrap">{{ result['prompt'] }}</code></pre>
+            <h3 class="mt-5"><strong>Attempts:</strong></h3>
+            <div>
+              <div class="accordion" id="all-attempts-accordion">
+                {% for attempt in result['attempts'] %}
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="heading_{{ result['task_id'] }}_attempt_{{ attempt['attempt_no'] }}">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_{{ result['task_id'] }}_attempt_{{ attempt['attempt_no'] }}" aria-expanded="false" aria-controls="collapse_{{ result['task_id'] }}_attempt_{{ attempt['attempt_no'] }}">Attempt {{ attempt['attempt_no'] }}</button>
+                  </h2>
+                  <div id="collapse_{{ result['task_id'] }}_attempt_{{ attempt['attempt_no'] }}" class="accordion-collapse collapse" aria-labelledby="heading_{{ result['task_id'] }}_attempt_{{ attempt['attempt_no'] }}" data-bs-parent="#all-attempts-accordion">
+                    <div class="accordion-body">
+                      <h5 class="mt-5"><strong>LLM Response:</strong></h5>
+                      <code>
+                        <pre><code class="language-javascript" style="white-space: pre-wrap">{{ attempt['llm_response'] }}</code></pre>
+                      </code>
+                      <h5 class="mt-5"><strong>Reference Solution:</strong></h5>
+                      <code>
+                        <pre><code class="language-javascript" style="white-space: pre-wrap">{{ result['reference_solution'] }}</code></pre>
+                      </code>
+                      <h5 class="mt-5">
+                        <strong>CodeBleu Score:</strong>
+                        <span>{{ attempt.result.codebleu | format_number }}</span>
+                      </h5>
+                    </div>
+                  </div>
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </body>
+</html>

@@ -1,0 +1,15 @@
+Look at the JavaScript task below and write a function that does what it asks, using the given function signature:
+```
+{coding_task}
+```
+
+And below is the function signature for the above task:
+```javascript
+{function_signature}
+```
+
+*IMPORTANT*: Output only your response as a JavaScript code as shown below, without other commentary or instructions. Make sure not to change the signature of the function. Use the function signature as it is and generate only the function body.
+
+```javascript
+// ADD THE COMPLETE FUNCTION WITH ITS SIGNATURE AND BODY HERE.
+```

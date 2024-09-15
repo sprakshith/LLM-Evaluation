@@ -1,0 +1,122 @@
+[
+  {
+    "id": 1,
+    "coding_task": "Write a function that takes an array of objects and a key, and returns a new array sorted based on the values of that key in ascending order.",
+    "function_signature": "sortByKey(arr, key)",
+    "reference_solution": "function sortByKey(arr, key) {\n  return arr.sort((a, b) => a[key] - b[key]);\n}"
+  },
+  {
+    "id": 2,
+    "coding_task": "Implement a function that takes two sorted arrays and merges them into a single sorted array without using any built-in sorting functions.",
+    "function_signature": "mergeSortedArrays(arr1, arr2)",
+    "reference_solution": "function mergeSortedArrays(arr1, arr2) {\n  let result = [];\n  let i = 0;\n  let j = 0;\n  while (i < arr1.length && j < arr2.length) {\n    if (arr1[i] < arr2[j]) {\n      result.push(arr1[i]);\n      i++;\n    } else {\n      result.push(arr2[j]);\n      j++;\n    }\n  }\n  while (i < arr1.length) {\n    result.push(arr1[i]);\n    i++;\n  }\n  while (j < arr2.length) {\n    result.push(arr2[j]);\n    j++;\n  }\n  return result;\n}"
+  },
+  {
+    "id": 3,
+    "coding_task": "Create a function that takes a string and returns the first non-repeating character in it. If there is no non-repeating character, return null.",
+    "function_signature": "firstNonRepeatingCharacter(str)",
+    "reference_solution": "function firstNonRepeatingCharacter(str) {\n  for (let i = 0; i < str.length; i++) {\n    if (str.indexOf(str[i]) === str.lastIndexOf(str[i])) {\n      return str[i];\n    }\n  }\n  return null;\n}"
+  },
+  {
+    "id": 4,
+    "coding_task": "Implement a function that takes an array of numbers and a target sum. The function should find two different numbers in the array that, when added together, give the target sum. Return these numbers in an array. If no such numbers exist, return an empty array.",
+    "function_signature": "findTwoNumbersForSum(numbers, targetSum)",
+    "reference_solution": "function findTwoNumbersForSum(numbers, targetSum) {\n  const numsSeen = {};\n  for (const num of numbers) {\n    const potentialMatch = targetSum - num;\n    if (potentialMatch in numsSeen) {\n      return [potentialMatch, num];\n    }\n    numsSeen[num] = true;\n  }\n  return [];\n}"
+  },
+  {
+    "id": 5,
+    "coding_task": "Create a function that takes a JSON object representing a shopping cart and calculates the total price. The JSON object will have an array of items, each item will have a name, quantity, and price per unit. The function should return the total price as a number.",
+    "function_signature": "calculateTotalPrice(cart)",
+    "reference_solution": "function calculateTotalPrice(cart) {\n  let totalPrice = 0;\n  for (const item of cart.items) {\n    totalPrice += item.quantity * item.pricePerUnit;\n  }\n  return totalPrice;\n}"
+  },
+  {
+    "id": 6,
+    "coding_task": "Write a function that takes in a string which is a querySelector for an html input element and returns the value of that input element.",
+    "function_signature": "getInputValue(selector)",
+    "reference_solution": "function getInputValue(selector) {\n  const input = document.querySelector(selector);\n  return input.value;\n}"
+  },
+  {
+    "id": 7,
+    "coding_task": "Write a function that takes in a html class and makes that element hidden when the function is called.",
+    "function_signature": "hideElement(className)",
+    "reference_solution": "function hideElement(className) {\n  const element = document.getElementsByClassName(className)[0];\n  element.style.display = 'none';\n}"
+  },
+  {
+    "id": 8,
+    "coding_task": "Write a function that takes in a string which is a querySelector and removes the element from the DOM.",
+    "function_signature": "removeElement(selector)",
+    "reference_solution": "function removeElement(selector) {\n  const element = document.querySelector(selector);\n  element.remove();\n}"
+  },
+  {
+    "id": 9,
+    "coding_task": "Write a function that takes in a string which is a querySelector and then empties that element.",
+    "function_signature": "emptyElement(selector)",
+    "reference_solution": "function emptyElement(selector) {\n  const element = document.querySelector(selector);\n  element.innerHTML = '';\n}"
+  },
+  {
+    "id": 10,
+    "coding_task": "Write a function that takes in a string which is a querySelector and an array. The function should append a new paragraph element to the element selected by the querySelector for each item in the array.",
+    "function_signature": "appendParagraphs(selector, array)",
+    "reference_solution": "function appendParagraphs(selector, array) {\n  const element = document.querySelector(selector);\n  for (const item of array) {\n    const p = document.createElement('p');\n    p.textContent = item;\n    element.appendChild(p);\n  }\n}"
+  },
+  {
+    "id": 11,
+    "coding_task": "Write a function that fetches data from a given URL and logs the response to the console. Use the Fetch API and async/await syntax.",
+    "function_signature": "fetchData(url)",
+    "reference_solution": "async function fetchData(url) {\n  try {\n    const response = await fetch(url);\n    const data = await response.json();\n    console.log(data);\n  } catch (error) {\n    console.error('Fetch error:', error);\n  }\n}"
+  },
+  {
+    "id": 12,
+    "coding_task": "Write a function that takes an array of URLs and console logs the JSON response from each URL. Use the Fetch API and async/await syntax.",
+    "function_signature": "fetchAll(urls)",
+    "reference_solution": "async function fetchAll(urls) {\n  for (const url of urls) {\n    try {\n      const response = await fetch(url);\n      const data = await response.json();\n      console.log(data);\n    } catch (error) {\n      console.error('Fetch error:', error);\n    }\n  }\n}"
+  },
+  {
+    "id": 13,
+    "coding_task": "Write a function that fetches data from a given URL. Once the data is recieved, append a new ul element to the html body. For each item in the data take only the item.name and append a new li element to the ul element. Use the Fetch API and async/await syntax.",
+    "function_signature": "fetchAndDisplayData(url)",
+    "reference_solution": "async function fetchAndDisplayData(url) {\n  try {\n    const response = await fetch(url);\n    const data = await response.json();\n    const ul = document.createElement('ul');\n    for (const item of data) {\n      const li = document.createElement('li');\n      li.textContent = item.name;\n      ul.appendChild(li);\n    }\n    document.body.appendChild(ul);\n  } catch (error) {\n    console.error('Fetch error:', error);\n  }\n}"
+  },
+  {
+    "id": 14,
+    "coding_task": "Write a function that takes in 3 arguments querySelector, css property, and value. The function should set the css property to the value for the element selected by the querySelector.",
+    "function_signature": "setCssProperty(selector, property, value)",
+    "reference_solution": "function setCssProperty(selector, property, value) {\n  const element = document.querySelector(selector);\n  element.style[property] = value;\n}"
+  },
+  {
+    "id": 15,
+    "coding_task": "Write a function that takes in a querySelector and a JavaScript object representing css properties and values. The function should set these css properties and values for the element selected by the querySelector.",
+    "function_signature": "setCssProperties(selector, cssObject)",
+    "reference_solution": "function setCssProperties(selector, cssObject) {\n  const element = document.querySelector(selector);\n  for (const property in cssObject) {\n    element.style[property] = cssObject[property];\n  }\n}"
+  },
+  {
+    "id": 16,
+    "coding_task": "Write a function that takes in a url and redirects the user to that url.",
+    "function_signature": "redirectToUrl(url)",
+    "reference_solution": "function redirectToUrl(url) {\n  window.location.href = url;\n}"
+  },
+  {
+    "id": 17,
+    "coding_task": "Write a function that takes in a search query, replaces all the spaces with '+' and redirects the user to this base link `https://www.google.com/search` with `q` as the query parameter and the search query as the value.",
+    "function_signature": "searchGoogle(query)",
+    "reference_solution": "function searchGoogle(query) {\n  const searchQuery = query.replace(/ /g, '+');\n  window.location.href = 'https://www.google.com/search?q=' + searchQuery;\n}"
+  },
+  {
+    "id": 18,
+    "coding_task": "Write a function that takes in url as an argument and then performs a GET request using jQuery AJAX to fetch data from a given URL and console logs the response.",
+    "function_signature": "fetchData(url)",
+    "reference_solution": "function fetchData(url) {\n  $.ajax({\n    url: url,\n    type: 'GET',\n    success: function(data) {\n      console.log(data);\n    },\n    error: function(error) {\n      console.error('Error:', error);\n    }\n  });\n}"
+  },
+  {
+    "id": 19,
+    "coding_task": "Write a function that will do the following:\n\n1. Fetch username from input field with id 'username'.\n2. Fetch password from input field with id 'password'.\n3. Create an object with username and password.\n4. Send a POST request to the url `https://testing.llm.com` with the object(Ex: {un: username, pw: password}) as data.\n5. Log the response to the console.\n6. Make sure to handle any errors that may occur.",
+    "function_signature": "authenticateUser()",
+    "reference_solution": "function authenticateUser() {\n  const username = document.getElementById('username').value;\n  const password = document.getElementById('password').value;\n  const data = {un: username, pw: password};\n  $.ajax({\n    url: 'https://testing.llm.com',\n    type: 'POST',\n    data: data,\n    success: function(response) {\n      console.log(response);\n    },\n    error: function(error) {\n      console.error('Error:', error);\n    }\n  });\n}"
+  },
+  {
+    "id": 20,
+    "coding_task": "Write a function that fetches data from a given URL using jQuery AJAX. Once the data is recieved, append a new ul element to the html body. For each item in the data take only the item.name and append a new li element to the ul element. Make sure to handle any errors that may occur.",
+    "function_signature": "fetchAndDisplayData(url)",
+    "reference_solution": "function fetchAndDisplayData(url) {\n  $.ajax({\n    url: url,\n    type: 'GET',\n    success: function(data) {\n      const ul = document.createElement('ul');\n      for (const item of data) {\n        const li = document.createElement('li');\n        li.textContent = item.name;\n        ul.appendChild(li);\n      }\n      document.body.appendChild(ul);\n    },\n    error: function(error) {\n      console.error('Error:', error);\n    }\n  });\n}"
+  }
+]
